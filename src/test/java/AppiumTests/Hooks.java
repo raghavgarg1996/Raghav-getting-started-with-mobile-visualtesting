@@ -60,14 +60,14 @@ public class Hooks {
         AppiumServiceBuilder serviceBuilder = new AppiumServiceBuilder();
         // Use any port, in case the default 4723 is already taken (maybe by another Appium server)
         serviceBuilder.usingAnyFreePort();
-        serviceBuilder.withAppiumJS(new File("./node_modules/appium/build/lib/main.js"));
+  //      serviceBuilder.withAppiumJS(new File("./node_modules/appium/build/lib/main.js"));
         serviceBuilder.withLogFile(new File("./target/appium_logs.txt"));
         serviceBuilder.withArgument(GeneralServerFlag.ALLOW_INSECURE, "adb_shell");
         serviceBuilder.withArgument(GeneralServerFlag.RELAXED_SECURITY);
 
         // Appium 1.x
-        localAppiumServer = AppiumDriverLocalService.buildService(serviceBuilder)
-                                                    .withBasePath("/wd/hub/");
+        localAppiumServer = AppiumDriverLocalService.buildService(serviceBuilder);
+ //                                                   .withBasePath("/wd/hub/");
 
         // Appium 2.x
         //        localAppiumServer = AppiumDriverLocalService.buildService(serviceBuilder);
@@ -88,9 +88,9 @@ public class Hooks {
         // Appium 2.x
         //        UiAutomator2Options capabilities = new UiAutomator2Options();
 
-        capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android");
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
+  //      capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "android");
         capabilities.setCapability("autoGrantPermissions", true);
         capabilities.setCapability("fullReset", true);
         capabilities.setCapability("app", new File("./sampleApps/AndroidCalculator.apk").getAbsolutePath());
